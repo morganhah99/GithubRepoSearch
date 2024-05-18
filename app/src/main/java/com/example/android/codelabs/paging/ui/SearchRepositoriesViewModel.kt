@@ -116,6 +116,7 @@ class SearchRepositoriesViewModel @Inject constructor(
         super.onCleared()
     }
 
+
     private fun searchRepo(queryString: String): Flow<PagingData<UiModel>> =
         repository.getSearchResultStream(queryString)
             .map { pagingData -> pagingData.map { UiModel.RepoItem(it) } }

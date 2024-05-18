@@ -25,11 +25,12 @@ import com.example.android.codelabs.paging.api.GithubService
 import com.example.android.codelabs.paging.db.RepoDatabase
 import com.example.android.codelabs.paging.model.Repo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 /**
  * Repository class that works with local and remote data sources.
  */
-class GithubRepository(
+class GithubRepository @Inject constructor(
     private val service: GithubService,
     private val database: RepoDatabase
 ) {
