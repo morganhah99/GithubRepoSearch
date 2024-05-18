@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2018 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   ~ limitations under the License.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,34 +22,28 @@
     android:background="#121212"
     tools:context=".ui.SearchRepositoriesActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <EditText
+        android:autofillHints="Hello"
+        android:id="@+id/search_repo"
         android:layout_width="0dp"
-        android:textColorHint="#FFFFFF"
         android:layout_height="wrap_content"
-        app:placeholderTextColor="#FFFFFF"
-        app:boxStrokeColor="#FFFFFF"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/border"
+        android:drawableEnd="@drawable/search_24dp_fill0_wght400_grad0_opsz24"
+        android:drawablePadding="8dp"
+        android:hint="@string/enter_repository_name"
+        android:imeOptions="actionSearch"
+        android:padding="20dp"
+        android:inputType="textNoSuggestions"
+        android:selectAllOnFocus="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/search_repo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border"
-            app:boxStrokeColor="#FFFFFF"
-            android:imeOptions="actionSearch"
-            android:inputType="textNoSuggestions"
-            android:selectAllOnFocus="true"
-            android:drawableEnd="@drawable/search_24dp_fill0_wght400_grad0_opsz24"
-            android:textColor="#FFFFFF"
-            tools:text="Android" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Android" />
 
     <Button
         android:id="@+id/btnClearDb"
@@ -64,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/search_repo"
         app:layout_constraintVertical_bias="0.82" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -79,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/search_repo"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="UnusedAttribute" />
 
@@ -89,31 +81,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/retry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/retry"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView android:id="@+id/emptyList"
+    <TextView
+        android:id="@+id/emptyList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/no_results"
+        android:textColor="#E0E0E0"
         android:textSize="@dimen/repo_name_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
