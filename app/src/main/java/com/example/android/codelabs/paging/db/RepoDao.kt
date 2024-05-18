@@ -39,6 +39,9 @@ interface RepoDao {
     @Query("SELECT * FROM repos WHERE name LIKE :query")
     suspend fun reposByNameSuspend(query: String): List<Repo>
 
-    @Query("DELETE FROM repos")
-    suspend fun clearRepos()
+    @Query("DELETE FROM repos WHERE name LIKE :query")
+    suspend fun clearRepos(query: String)
+
+//    @Query("")
+
 }

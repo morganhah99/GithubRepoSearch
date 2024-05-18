@@ -48,6 +48,7 @@ abstract class RepoDatabase : RoomDatabase() {
                 context.applicationContext,
                 RepoDatabase::class.java, "Github.db"
             )
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

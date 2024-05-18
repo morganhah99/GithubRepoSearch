@@ -40,9 +40,6 @@ class GithubRemoteMediator(
     private val repoDatabase: RepoDatabase
 ) : RemoteMediator<Int, Repo>() {
 
-    private var lastQuery: String? = null
-
-
     override suspend fun initialize(): InitializeAction {
         // Launch remote refresh as soon as paging starts and do not trigger remote prepend or
         // append until refresh has succeeded. In cases where we don't mind showing out-of-date,
@@ -53,9 +50,10 @@ class GithubRemoteMediator(
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Repo>): MediatorResult {
 
-        if (query == lastQuery && loadType == LoadType.REFRESH) {
-            Log.d("Same Query", "Same Query")
-            return MediatorResult.Success(endOfPaginationReached = false)
+        val dataExists = isDataInDatabase(query)
+        if (dataExists && loadType == LoadType.REFRESH) {
+            Log.d("GithubRemoteMediator", "Data already exists in the database for query: $query, no need to fetch from network")
+            return MediatorResult.Success(endOfPaginationReached = true)
         }
 
         val page = when (loadType) {
@@ -94,18 +92,18 @@ class GithubRemoteMediator(
         val apiQuery = query + IN_QUALIFIER
 
         try {
-            Log.d("GithubRemoteMediator", "Starting network call for query: $query, page: $page")
+            Log.d("GithubRemoteMediator", "Fetching data from the network for query: $apiQuery, page: $page")
             val apiResponse = service.searchRepos(apiQuery, page, state.config.pageSize)
-            Log.d("GithubRemoteMediator", "Initiating network call for query: $query")
 
             val repos = apiResponse.items
-            Log.d("REPOS", "$repos")
             val endOfPaginationReached = repos.isEmpty()
             repoDatabase.withTransaction {
                 // clear all tables in the database
                 if (loadType == LoadType.REFRESH) {
-                    repoDatabase.remoteKeysDao().clearRemoteKeys()
-                    repoDatabase.reposDao().clearRepos()
+                    Log.d("GithubRemoteMediator", "Clearing database and inserting new data for query: $query")
+                    repoDatabase.remoteKeysDao().clearRemoteKeys(query)
+                    repoDatabase.reposDao().clearRepos(query)
+
                 }
                 val prevKey = if (page == GITHUB_STARTING_PAGE_INDEX) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
@@ -114,6 +112,7 @@ class GithubRemoteMediator(
                 }
                 repoDatabase.remoteKeysDao().insertAll(keys)
                 repoDatabase.reposDao().insertAll(repos)
+                Log.d("GithubRemoteMediator", "Data inserted into the database for query: $query")
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: IOException) {
@@ -131,6 +130,12 @@ class GithubRemoteMediator(
                 // Get the remote keys of the last item retrieved
                 repoDatabase.remoteKeysDao().remoteKeysRepoId(repo.id)
             }
+    }
+
+    private suspend fun isDataInDatabase(query: String): Boolean {
+        val dbQuery = "%${query.replace(' ', '%')}%"
+        val repos = repoDatabase.reposDao().reposByNameSuspend(dbQuery)
+        return repos.isNotEmpty()
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, Repo>): RemoteKeys? {
