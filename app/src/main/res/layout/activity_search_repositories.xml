@@ -43,13 +43,13 @@
             android:id="@+id/search_repo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search_hint"
+            android:background="@drawable/border"
             app:boxStrokeColor="#FFFFFF"
             android:imeOptions="actionSearch"
             android:inputType="textNoSuggestions"
             android:selectAllOnFocus="true"
+            android:drawableEnd="@drawable/search_24dp_fill0_wght400_grad0_opsz24"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
             tools:text="Android" />
     </com.google.android.material.textfield.TextInputLayout>
 
