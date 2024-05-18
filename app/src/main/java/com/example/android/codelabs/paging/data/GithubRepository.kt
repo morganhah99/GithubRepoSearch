@@ -21,6 +21,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.room.withTransaction
 import com.example.android.codelabs.paging.api.GithubService
 import com.example.android.codelabs.paging.db.RepoDatabase
 import com.example.android.codelabs.paging.model.Repo
@@ -59,6 +60,13 @@ class GithubRepository @Inject constructor(
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow
+    }
+
+    suspend fun clearDatabase() {
+        database.withTransaction {
+            database.remoteKeysDao().clearAll()
+            database.reposDao().clearAll()
+        }
     }
 
     companion object {

@@ -99,9 +99,7 @@ class GithubRemoteMediator @Inject constructor(
             val repos = apiResponse.items
             val endOfPaginationReached = repos.isEmpty()
             repoDatabase.withTransaction {
-                // clear all tables in the database
                 if (loadType == LoadType.REFRESH) {
-                    Log.d("GithubRemoteMediator", "Clearing database and inserting new data for query: $query")
                     repoDatabase.remoteKeysDao().clearRemoteKeys(query)
                     repoDatabase.reposDao().clearRepos(query)
 

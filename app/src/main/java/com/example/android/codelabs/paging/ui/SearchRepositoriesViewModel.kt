@@ -116,6 +116,12 @@ class SearchRepositoriesViewModel @Inject constructor(
         super.onCleared()
     }
 
+    fun clearDatabase() {
+        viewModelScope.launch {
+            repository.clearDatabase()
+        }
+    }
+
 
     private fun searchRepo(queryString: String): Flow<PagingData<UiModel>> =
         repository.getSearchResultStream(queryString)

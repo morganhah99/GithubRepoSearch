@@ -21,47 +21,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
     tools:context=".ui.SearchRepositoriesActivity">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
+        android:textColorHint="#FFFFFF"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        app:placeholderTextColor="#FFFFFF"
+        app:boxStrokeColor="#FFFFFF"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <EditText
             android:id="@+id/search_repo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_hint"
+            app:boxStrokeColor="#FFFFFF"
             android:imeOptions="actionSearch"
             android:inputType="textNoSuggestions"
             android:selectAllOnFocus="true"
-            tools:text="Android"/>
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            tools:text="Android" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
+        android:id="@+id/btnClearDb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnClearDb"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/clear_database"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout"
+        app:layout_constraintVertical_bias="0.82" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingVertical="@dimen/row_item_margin_vertical"
+        android:paddingTop="50dp"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_layout"
-        tools:ignore="UnusedAttribute"/>
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="UnusedAttribute" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

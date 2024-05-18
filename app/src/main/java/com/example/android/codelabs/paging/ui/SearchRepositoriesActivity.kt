@@ -62,7 +62,9 @@ class SearchRepositoriesActivity : AppCompatActivity() {
             uiActions = viewModel.accept
         )
 
-        binding.btnClearDb.setOnClickListener {  }
+        binding.btnClearDb.setOnClickListener {
+            viewModel.clearDatabase()
+        }
     }
 
     /**

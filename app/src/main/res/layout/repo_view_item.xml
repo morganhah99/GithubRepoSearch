@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#121212"
     android:paddingHorizontal="@dimen/row_item_margin_horizontal"
     android:paddingTop="@dimen/row_item_margin_vertical"
     android:paddingBottom="@dimen/row_item_margin_vertical"
@@ -13,8 +14,8 @@
     <TextView
         android:id="@+id/repo_name"
         android:layout_width="0dp"
+        android:textColor="#FFFFFF"
         android:layout_height="wrap_content"
-        android:textColor="@color/titleColor"
         android:textSize="@dimen/repo_name_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +31,7 @@
         android:ellipsize="end"
         android:paddingTop="4dp"
         android:paddingBottom="8dp"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="#E0E0E0"
         android:textSize="@dimen/repo_description_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:textColor="#B0B0B0"
         android:text="@string/language"
         android:textSize="@dimen/repo_description_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,13 +61,15 @@
         android:src="@drawable/ic_star"
         app:layout_constraintStart_toEndOf="@+id/repo_language"
         app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="#B0B0B0" />
 
     <TextView
         android:id="@+id/repo_stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:textColor="#B0B0B0"
         android:textSize="@dimen/repo_description_size"
         app:layout_constraintStart_toEndOf="@+id/star"
         app:layout_constraintTop_toBottomOf="@+id/repo_description"
@@ -81,7 +85,8 @@
         android:src="@drawable/ic_git_branch"
         app:layout_constraintStart_toEndOf="@+id/repo_stars"
         app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="#B0B0B0" />
 
     <TextView
         android:id="@+id/repo_forks"
@@ -90,6 +95,7 @@
         android:textSize="@dimen/repo_description_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#B0B0B0"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/forks"
         app:layout_constraintTop_toBottomOf="@+id/repo_description"
