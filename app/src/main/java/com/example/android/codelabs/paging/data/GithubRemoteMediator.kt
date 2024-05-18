@@ -29,12 +29,13 @@ import com.example.android.codelabs.paging.db.RepoDatabase
 import com.example.android.codelabs.paging.model.Repo
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
 // GitHub page API is 1 based: https://developer.github.com/v3/#pagination
 private const val GITHUB_STARTING_PAGE_INDEX = 1
 
 @OptIn(ExperimentalPagingApi::class)
-class GithubRemoteMediator(
+class GithubRemoteMediator @Inject constructor(
     private val query: String,
     private val service: GithubService,
     private val repoDatabase: RepoDatabase
