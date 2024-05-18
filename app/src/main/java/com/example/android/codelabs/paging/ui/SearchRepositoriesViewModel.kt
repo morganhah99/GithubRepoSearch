@@ -25,6 +25,7 @@ import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.example.android.codelabs.paging.data.GithubRepository
 import com.example.android.codelabs.paging.model.Repo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -38,12 +39,14 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * ViewModel for the [SearchRepositoriesActivity] screen.
  * The ViewModel works with the [GithubRepository] to get the data.
  */
-class SearchRepositoriesViewModel(
+@HiltViewModel
+class SearchRepositoriesViewModel @Inject constructor(
     private val repository: GithubRepository,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
