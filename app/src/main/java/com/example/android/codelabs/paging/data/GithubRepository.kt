@@ -23,8 +23,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.room.withTransaction
 import com.example.android.codelabs.paging.api.GithubService
+import com.example.android.codelabs.paging.data.model.Repo
 import com.example.android.codelabs.paging.db.RepoDatabase
-import com.example.android.codelabs.paging.model.Repo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

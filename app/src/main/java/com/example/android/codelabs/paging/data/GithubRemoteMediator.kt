@@ -24,9 +24,9 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.android.codelabs.paging.api.GithubService
 import com.example.android.codelabs.paging.api.IN_QUALIFIER
+import com.example.android.codelabs.paging.data.model.Repo
 import com.example.android.codelabs.paging.db.RemoteKeys
 import com.example.android.codelabs.paging.db.RepoDatabase
-import com.example.android.codelabs.paging.model.Repo
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

@@ -24,7 +24,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codelabs.paging.R
-import com.example.android.codelabs.paging.model.Repo
+import com.example.android.codelabs.paging.data.model.Repo
 
 /**
  * View Holder for a [Repo] RecyclerView list item.

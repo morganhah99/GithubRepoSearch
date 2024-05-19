@@ -133,10 +133,12 @@ class SearchRepositoriesActivity : AppCompatActivity() {
     }
 
     private fun ActivitySearchRepositoriesBinding.updateRepoListFromInput(onQueryChanged: (UiAction.Search) -> Unit) {
-        searchRepo.text.trim().let {
-            if (it.isNotEmpty()) {
-                list.scrollToPosition(0)
-                onQueryChanged(UiAction.Search(query = it.toString()))
+        searchRepo.text?.trim().let {
+            if (it != null) {
+                if (it.isNotEmpty()) {
+                    list.scrollToPosition(0)
+                    onQueryChanged(UiAction.Search(query = it.toString()))
+                }
             }
         }
     }

@@ -16,7 +16,7 @@
 
 package com.example.android.codelabs.paging.api
 
-import com.example.android.codelabs.paging.model.Repo
+import com.example.android.codelabs.paging.data.model.Repo
 import com.google.gson.annotations.SerializedName
 
 /**
