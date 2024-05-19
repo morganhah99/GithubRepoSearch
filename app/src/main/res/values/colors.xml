@@ -16,12 +16,13 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#2A2A2A</color>
-    <color name="colorPrimaryDark">#121212</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="titleColor">#1F75FE</color>
-    <color name="titleColorAlpha">#551F75FE</color>
-    <color name="greyAlpha">#55999999</color>
-    <color name="separatorBackground">#AAAAAA</color>
-    <color name="separatorText">#FFFFFF</color>
+    <color name="colorPrimary">#1E88E5</color>
+    <color name="colorPrimaryDark">#005CB2</color>
+    <color name="colorAccent">#FFEB3B</color>
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="background">#121212</color>
+    <color name="repoNameTextColor">#1E90FF</color>
+    <color name="repoDescriptionTextColor">#E0E0E0</color>
+    <color name="repoMetadataTextColor">#B0B0B0</color>
+    <color name="repoSearchTextColor">#B3B3B3</color>
 </resources>

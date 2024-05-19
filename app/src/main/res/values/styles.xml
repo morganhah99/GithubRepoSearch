@@ -1,27 +1,45 @@
-<!--
-  ~ Copyright (C) 2018 The Android Open Source Project
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~      http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar" />
+
+    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/background</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="android:layout_margin">8dp</item>
     </style>
 
+    <style name="ConstraintLayoutStyle">
+        <item name="android:paddingHorizontal">@dimen/row_item_margin_horizontal</item>
+        <item name="android:paddingTop">@dimen/row_item_margin_vertical</item>
+        <item name="android:paddingBottom">@dimen/row_item_margin_vertical</item>
+    </style>
+
+    <style name="RepoNameTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/repoNameTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="RepoDescriptionTextAppearance" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/repoDescriptionTextColor</item>
+    </style>
+
+    <style name="RepoMetadataTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/repoMetadataTextColor</item>
+    </style>
+
+    <style name="RepoSearchTextAppearance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColorHint">@color/repoSearchTextColor</item>
+        <item name="android:textColor">@color/repoSearchTextColor</item>
+    </style>
+
+    <style name="ImageViewMargins">
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="TextViewMargins">
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
 </resources>

@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#121212"
-    android:paddingHorizontal="@dimen/row_item_margin_horizontal"
-    android:paddingTop="@dimen/row_item_margin_vertical"
-    android:paddingBottom="@dimen/row_item_margin_vertical"
+    style="@style/CardViewStyle"
     tools:ignore="UnusedAttribute">
 
-    <TextView
-        android:id="@+id/repo_name"
-        android:layout_width="0dp"
-        android:textColor="#1E90FF"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/repo_name_size"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="android-architecture"/>
+        style="@style/ConstraintLayoutStyle">
 
-    <TextView
-        android:id="@+id/repo_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:paddingTop="4dp"
-        android:paddingBottom="8dp"
-        android:textColor="#E0E0E0"
-        android:textSize="@dimen/repo_description_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repo_name"
-        tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps."/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repo_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/RepoNameTextAppearance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="android-architecture"/>
 
-    <TextView
-        android:id="@+id/repo_language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="#B0B0B0"
-        android:text="@string/language"
-        android:textSize="@dimen/repo_description_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="RtlCompat"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repo_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/RepoDescriptionTextAppearance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repo_name"
+            tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps."/>
 
-    <ImageView
-        android:contentDescription="@string/stars"
-        android:id="@+id/star"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_star"
-        app:layout_constraintStart_toEndOf="@+id/repo_language"
-        app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:tint="#B0B0B0" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repo_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/RepoMetadataTextAppearance"
+            android:text="@string/language"
+            android:textSize="@dimen/repo_description_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="RtlCompat"/>
 
-    <TextView
-        android:id="@+id/repo_stars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textColor="#B0B0B0"
-        android:textSize="@dimen/repo_description_size"
-        app:layout_constraintStart_toEndOf="@+id/star"
-        app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="30"/>
+        <ImageView
+            android:contentDescription="@string/stars"
+            android:id="@+id/star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            style="@style/ImageViewMargins"
+            android:src="@drawable/ic_star"
+            app:layout_constraintStart_toEndOf="@+id/repo_language"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/repoMetadataTextColor" />
 
-    <ImageView
-        android:contentDescription="@string/forks"
-        android:id="@+id/forks"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="4dp"
-        android:src="@drawable/ic_git_branch"
-        app:layout_constraintStart_toEndOf="@+id/repo_stars"
-        app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:tint="#B0B0B0" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repo_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextViewMargins"
+            android:textSize="@dimen/repo_description_size"
+            android:textAppearance="@style/RepoMetadataTextAppearance"
+            app:layout_constraintStart_toEndOf="@+id/star"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="30"/>
 
-    <TextView
-        android:id="@+id/repo_forks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/repo_description_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#B0B0B0"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/forks"
-        app:layout_constraintTop_toBottomOf="@+id/repo_description"
-        tools:text="30" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:contentDescription="@string/forks"
+            android:id="@+id/forks"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_git_branch"
+            app:layout_constraintStart_toEndOf="@+id/repo_stars"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/repoMetadataTextColor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repo_forks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/RepoMetadataTextAppearance"
+            android:textSize="@dimen/repo_description_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/forks"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            tools:text="30" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
