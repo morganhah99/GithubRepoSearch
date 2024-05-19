@@ -43,6 +43,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+// The ViewModel only pulls info from PagingSource provided from repository injection
+// The repository contains a method that has a PagingSourceFactory that creates
+// instances of PageSource that load data from the local DB
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class SearchRepositoriesViewModel @Inject constructor(

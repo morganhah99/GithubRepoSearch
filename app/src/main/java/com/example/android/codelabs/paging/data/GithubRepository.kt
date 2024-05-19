@@ -47,6 +47,7 @@ class GithubRepository @Inject constructor(
         val dbQuery = "%${query.replace(' ', '%')}%"
         val pagingSourceFactory = {
             Log.d("GithubRepository", "Fetching data from the database for query: $dbQuery")
+            // PagingSource
             database.reposDao().reposByName(dbQuery)
         }
 

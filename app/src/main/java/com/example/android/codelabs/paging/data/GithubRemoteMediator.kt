@@ -34,6 +34,8 @@ import javax.inject.Inject
 // GitHub page API is 1 based: https://developer.github.com/v3/#pagination
 private const val GITHUB_STARTING_PAGE_INDEX = 1
 
+// RemoteMediator decides if an API call is needed, if not, then it's job is done.
+// If API call is necessary, then Mediator puts each page from response into DB for ViewModel to pull from.
 @OptIn(ExperimentalPagingApi::class)
 class GithubRemoteMediator @Inject constructor(
     private val query: String,
@@ -57,6 +59,8 @@ class GithubRemoteMediator @Inject constructor(
         loadType: LoadType,
         state: PagingState<Int, Repo>
     ): MediatorResult {
+        // When load function is called, I check if existing data is present
+        // If false, then pull
         val dataExists = isDataInDatabase(query)
         if (dataExists && loadType == LoadType.REFRESH) {
             Log.d("GithubRemoteMediator", "Data already exists in the database for query: $query, no need to fetch from network")
@@ -131,6 +135,7 @@ class GithubRemoteMediator @Inject constructor(
             }
     }
 
+    // This function checks if data for the given query already exists in the db
     private suspend fun isDataInDatabase(query: String): Boolean {
         val dbQuery = "%${query.replace(' ', '%')}%"
         val repos = repoDatabase.reposDao().reposByNameSuspend(dbQuery)
