@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.ui
+package com.example.android.codelabs.paging.ui.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.android.codelabs.paging.R
+import com.example.android.codelabs.paging.ui.viewholder.RepoViewHolder
+import com.example.android.codelabs.paging.ui.viewholder.SeparatorViewHolder
+import com.example.android.codelabs.paging.ui.viewmodel.UiModel
 
 /**
  * Adapter for the list of repositories.

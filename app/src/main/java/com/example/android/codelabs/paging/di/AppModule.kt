@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging
+package com.example.android.codelabs.paging.di
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

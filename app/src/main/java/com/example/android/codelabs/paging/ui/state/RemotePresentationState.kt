@@ -1,4 +1,4 @@
-package com.example.android.codelabs.paging.ui
+package com.example.android.codelabs.paging.ui.state
 
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState

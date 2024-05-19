@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.ui
+package com.example.android.codelabs.paging.ui.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -42,10 +42,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel for the [SearchRepositoriesActivity] screen.
- * The ViewModel works with the [GithubRepository] to get the data.
- */
+
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class SearchRepositoriesViewModel @Inject constructor(
