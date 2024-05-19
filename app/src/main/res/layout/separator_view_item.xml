@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:textColor="#DCDCDC"
-            android:textSize="@dimen/repo_name_size"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

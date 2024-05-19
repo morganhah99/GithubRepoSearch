@@ -62,10 +62,11 @@
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="UnusedAttribute" />
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
+    <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:indeterminateTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/retry"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +89,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/no_results"
-        android:textColor="#E0E0E0"
+        android:textColor="#FFFFFF"
         android:textSize="@dimen/repo_name_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

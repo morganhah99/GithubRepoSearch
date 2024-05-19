@@ -11,8 +11,7 @@
 
     <style name="ConstraintLayoutStyle">
         <item name="android:paddingHorizontal">@dimen/row_item_margin_horizontal</item>
-        <item name="android:paddingTop">@dimen/row_item_margin_vertical</item>
-        <item name="android:paddingBottom">@dimen/row_item_margin_vertical</item>
+
     </style>
 
     <style name="RepoNameTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
