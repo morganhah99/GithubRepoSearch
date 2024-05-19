@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/repo_name"
         android:layout_width="0dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#1E90FF"
         android:layout_height="wrap_content"
         android:textSize="@dimen/repo_name_size"
         android:textStyle="bold"

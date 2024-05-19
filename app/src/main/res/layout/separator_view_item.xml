@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/row_item_margin_horizontal"
-        android:textColor="@color/separatorText"
+        android:textColor="#DCDCDC"
         android:textSize="@dimen/repo_name_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

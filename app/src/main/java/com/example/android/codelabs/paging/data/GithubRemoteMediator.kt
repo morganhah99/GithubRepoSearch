@@ -42,21 +42,28 @@ class GithubRemoteMediator @Inject constructor(
 ) : RemoteMediator<Int, Repo>() {
 
     override suspend fun initialize(): InitializeAction {
-        // Launch remote refresh as soon as paging starts and do not trigger remote prepend or
-        // append until refresh has succeeded. In cases where we don't mind showing out-of-date,
-        // cached offline data, we can return SKIP_INITIAL_REFRESH instead to prevent paging
-        // triggering remote refresh.
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, Repo>): MediatorResult {
 
+    // This function gets called anytime there is any form of loading in regards to pagination
+    // Three types of load:
+    // REFRESH -> (Loading because whole list is being refreshed),
+    // APPEND -> (Loading because as user scrolls, we call api again to append next set of items to the existing list)
+    // PREPEND ->
+    // PagingState refers to current paging config (Ex: what page size, what page currently at)
+    // Function returns MediatorResult
+    override suspend fun load(
+        loadType: LoadType,
+        state: PagingState<Int, Repo>
+    ): MediatorResult {
         val dataExists = isDataInDatabase(query)
         if (dataExists && loadType == LoadType.REFRESH) {
             Log.d("GithubRemoteMediator", "Data already exists in the database for query: $query, no need to fetch from network")
             return MediatorResult.Success(endOfPaginationReached = true)
         }
 
+        // Key refers to current page we want to load
         val page = when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
@@ -64,11 +71,6 @@ class GithubRemoteMediator @Inject constructor(
             }
             LoadType.PREPEND -> {
                 val remoteKeys = getRemoteKeyForFirstItem(state)
-                // If remoteKeys is null, that means the refresh result is not in the database yet.
-                // We can return Success with `endOfPaginationReached = false` because Paging
-                // will call this method again if RemoteKeys becomes non-null.
-                // If remoteKeys is NOT NULL but its prevKey is null, that means we've reached
-                // the end of pagination for prepend.
                 val prevKey = remoteKeys?.prevKey
                 if (prevKey == null) {
                     return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
@@ -77,11 +79,6 @@ class GithubRemoteMediator @Inject constructor(
             }
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
-                // If remoteKeys is null, that means the refresh result is not in the database yet.
-                // We can return Success with `endOfPaginationReached = false` because Paging
-                // will call this method again if RemoteKeys becomes non-null.
-                // If remoteKeys is NOT NULL but its nextKey is null, that means we've reached
-                // the end of pagination for append.
                 val nextKey = remoteKeys?.nextKey
                 if (nextKey == null) {
                     return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
@@ -92,6 +89,9 @@ class GithubRemoteMediator @Inject constructor(
 
         val apiQuery = query + IN_QUALIFIER
 
+        // Try block calls api then inserts the result into local database
+        // The reason why we use withTransaction is because multiple SQL statements are being executed
+        // Only want to execute them all if they all succeed
         try {
             Log.d("GithubRemoteMediator", "Fetching data from the network for query: $apiQuery, page: $page")
             val apiResponse = service.searchRepos(apiQuery, page, state.config.pageSize)

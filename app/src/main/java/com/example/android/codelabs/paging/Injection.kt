@@ -28,6 +28,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -42,8 +47,21 @@ object AppModule {
 
     @Provides
     fun provideGithubService(): GithubService {
-        return GithubService.create()
+        val logger = HttpLoggingInterceptor()
+        logger.level = Level.BASIC
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logger)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.github.com/")
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(GithubService::class.java)
     }
+
 
     @Provides
     fun provideRepoDatabase(@ApplicationContext context: Context): RepoDatabase {
