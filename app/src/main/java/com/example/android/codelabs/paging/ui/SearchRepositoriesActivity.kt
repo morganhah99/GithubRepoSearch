@@ -28,6 +28,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.codelabs.paging.data.network.showConnectionStatus
 import com.example.android.codelabs.paging.databinding.ActivitySearchRepositoriesBinding
 import com.example.android.codelabs.paging.ui.adapter.ReposAdapter
 import com.example.android.codelabs.paging.ui.adapter.ReposLoadStateAdapter
@@ -57,7 +58,7 @@ class SearchRepositoriesActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
+        showConnectionStatus(this)
 
         // add dividers between RecyclerView's row items
         val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
