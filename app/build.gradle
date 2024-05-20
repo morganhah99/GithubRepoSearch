@@ -70,6 +70,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-paging:$roomVersion"
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // retrofit
@@ -83,5 +85,8 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.51.1")
 
     implementation("androidx.fragment:fragment-ktx:1.1.0")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.0.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.0.0")
 
 }
