@@ -20,7 +20,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.android.codelabs.paging.data.api.GithubService
-import com.example.android.codelabs.paging.repo.GithubRepository
+import com.example.android.codelabs.paging.data.repo.GithubRepository
 import com.example.android.codelabs.paging.data.db.RepoDatabase
 import dagger.Module
 import dagger.Provides

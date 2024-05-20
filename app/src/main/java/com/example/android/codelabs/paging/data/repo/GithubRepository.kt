@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.repo
+package com.example.android.codelabs.paging.data.repo
 
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
