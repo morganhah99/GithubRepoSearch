@@ -23,7 +23,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.insertSeparators
 import androidx.paging.map
-import com.example.android.codelabs.paging.data.GithubRepository
+import com.example.android.codelabs.paging.repo.GithubRepository
 import com.example.android.codelabs.paging.data.model.Repo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

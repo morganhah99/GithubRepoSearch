@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.api
+package com.example.android.codelabs.paging.data.api
 
-import retrofit2.http.GET
-import retrofit2.http.Query
-
-const val IN_QUALIFIER = " in:name,description"
+import com.example.android.codelabs.paging.data.model.Repo
+import com.google.gson.annotations.SerializedName
 
 /**
- * Github API communication setup via Retrofit.
+ * Data class to hold repo responses from searchRepo API calls.
  */
-interface GithubService {
-    @GET("search/repositories?sort=stars")
-    suspend fun searchRepos(
-        @Query("q") query: String,
-        @Query("page") page: Int,
-        @Query("per_page") itemsPerPage: Int
-    ): RepoSearchResponse
-}
-
+data class RepoSearchResponse(
+    @SerializedName("total_count") val total: Int = 0,
+    @SerializedName("items") val items: List<Repo> = emptyList(),
+    val nextPage: Int? = null
+)

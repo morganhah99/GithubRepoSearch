@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The Android Open Source Project
+ * Copyright (C) 2018 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.db
+package com.example.android.codelabs.paging.data.api
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-@Entity(tableName = "remote_keys")
-data class RemoteKeys(
-    @PrimaryKey val repoId: Long,
-    val prevKey: Int?,
-    val nextKey: Int?
-)
+const val IN_QUALIFIER = " in:name,description"
+
+/**
+ * Github API communication setup via Retrofit.
+ */
+interface GithubService {
+    @GET("search/repositories?sort=stars")
+    suspend fun searchRepos(
+        @Query("q") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") itemsPerPage: Int
+    ): RepoSearchResponse
+}
+

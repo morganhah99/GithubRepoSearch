@@ -14,34 +14,25 @@
  * limitations under the License.
  */
 
-package com.example.android.codelabs.paging.db
+package com.example.android.codelabs.paging.data.db
 
-import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.android.codelabs.paging.data.model.Repo
 
 @Dao
-interface RepoDao {
+interface RemoteKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(repos: List<Repo>)
+    suspend fun insertAll(remoteKey: List<RemoteKeys>)
 
-    @Query(
-        "SELECT * FROM repos WHERE " +
-            "name LIKE :queryString OR description LIKE :queryString " +
-            "ORDER BY stars DESC, name ASC"
-    )
-    fun reposByName(queryString: String): PagingSource<Int, Repo>
+    @Query("SELECT * FROM remote_keys WHERE repoId = :repoId")
+    suspend fun remoteKeysRepoId(repoId: Long): RemoteKeys?
 
-    @Query("SELECT * FROM repos WHERE name LIKE :query")
-    suspend fun reposByNameSuspend(query: String): List<Repo>
+    @Query("DELETE FROM remote_keys WHERE repoId IN (SELECT id FROM repos WHERE name LIKE :query)")
+    suspend fun clearRemoteKeys(query: String)
 
-    @Query("DELETE FROM repos WHERE name LIKE :query")
-    suspend fun clearRepos(query: String)
-
-    @Query("DELETE FROM repos")
+    @Query("DELETE FROM remote_keys")
     suspend fun clearAll()
 }
