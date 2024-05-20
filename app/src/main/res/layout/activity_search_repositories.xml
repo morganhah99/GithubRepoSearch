@@ -8,9 +8,11 @@
     android:paddingBottom="8dp"
     tools:context=".ui.SearchRepositoriesActivity">
 
+
+
     <EditText
         android:id="@+id/search_repo"
-        android:layout_width="393dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -27,10 +29,20 @@
         android:textAppearance="@style/RepoSearchTextAppearance"
         android:textColor="#B3B3B3"
         android:textColorHint="#B3B3B3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Android" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/search_repo"
+        app:layout_constraintBottom_toBottomOf="@+id/search_repo"
+        app:layout_constraintStart_toEndOf="@+id/search_repo" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnClearDb"

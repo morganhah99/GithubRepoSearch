@@ -16,11 +16,13 @@
 
 package com.example.android.codelabs.paging.ui
 
+import android.R
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -187,6 +189,14 @@ class SearchRepositoriesActivity : AppCompatActivity() {
         lifecycleScope.launch {
             shouldScrollToTop.collect { shouldScroll ->
                 if (shouldScroll) list.scrollToPosition(0)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.previousQueries.collect { queries ->
+                val adapter = ArrayAdapter(this@SearchRepositoriesActivity, R.layout.simple_spinner_item, queries)
+                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
             }
         }
 

@@ -71,6 +71,10 @@ class GithubRepository @Inject constructor(
         }
     }
 
+    fun getPreviousQueries(): Flow<List<String>> {
+        return database.reposDao().getDistinctQueries()
+    }
+
     companion object {
         const val NETWORK_PAGE_SIZE = 30
     }

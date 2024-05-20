@@ -22,6 +22,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.android.codelabs.paging.data.model.Repo
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RepoDao {
@@ -44,4 +45,7 @@ interface RepoDao {
 
     @Query("DELETE FROM repos")
     suspend fun clearAll()
+
+    @Query("SELECT DISTINCT name FROM repos")
+    fun getDistinctQueries(): Flow<List<String>>
 }
