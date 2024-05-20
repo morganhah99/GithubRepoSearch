@@ -26,14 +26,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.codelabs.paging.R
 import com.example.android.codelabs.paging.data.network.NetworkChangeReceiver
 import com.example.android.codelabs.paging.databinding.ActivitySearchRepositoriesBinding
 import com.example.android.codelabs.paging.ui.adapter.ReposAdapter
@@ -58,7 +54,6 @@ class SearchRepositoriesActivity : AppCompatActivity() {
 
     private val viewModel: SearchRepositoriesViewModel by viewModels()
 
-    private lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,21 +66,6 @@ class SearchRepositoriesActivity : AppCompatActivity() {
 
         val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(networkChangeReceiver, filter)
-
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        navController = navHostFragment.navController
-
-        binding.bottomNavigationView.setupWithNavController(navController)
-
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.saved -> navController.navigate(R.id.savedFragment)
-                else -> {}
-            }
-            true
-        }
 
 
         // add dividers between RecyclerView's row items
